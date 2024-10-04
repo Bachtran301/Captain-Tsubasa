@@ -1,0 +1,8 @@
+{
+  "enableCardUpgrades": true,
+  "enableTapUpgrades": true,
+  "enableEnergyUpgrades": true,
+  "maxUpgradeCost": 700000,
+  "maxTapUpgradeLevel": 17,
+  "maxEnergyUpgradeLevel": 5
+}
