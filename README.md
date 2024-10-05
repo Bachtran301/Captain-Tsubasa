@@ -6,6 +6,7 @@
 
 ✔️ Fix tap
 
+✔️ Skip upgrading expired cards
 
 # 🛠️ Instructions:
 
@@ -31,6 +32,18 @@ query_id=xxx or user=xxxx
 
 ![Capture](https://github.com/user-attachments/assets/6db0b3ed-86fe-4cf7-b9c3-9dde4c0f2efb)
 
+# Configuration option in config.json (true/false)
+
+```js
+{
+  "enableCardUpgrades": true,
+  "enableTapUpgrades": true,
+  "enableEnergyUpgrades": true,
+  "maxUpgradeCost": 1000000,
+  "maxTapUpgradeLevel": 5,
+  "maxEnergyUpgradeLevel": 5
+}
+```
 
 # Run the tool using the command:
 
