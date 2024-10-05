@@ -54,3 +54,15 @@ noproxy:
 proxy:
 
 `node tsubasa2.js`
+
+# Revision history
+> Latest version: `v0.1.1`
+
+<details>
+<summary>v0.1.1 - 📅 10/05/2024</summary>
+  
+- Fix tap
+
+- Skip upgrading expired cards
+
+</details>
