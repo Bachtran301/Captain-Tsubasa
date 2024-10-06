@@ -1,3 +1,5 @@
+![photo_2024-09-19_14-32-10](https://github.com/user-attachments/assets/da850c53-83e4-4dd1-9d3c-c3a9435b9f3e)
+
 ✔️ Add stamina recovery
 
 ✔️ Add options to upgrade Multitap and Stamina
