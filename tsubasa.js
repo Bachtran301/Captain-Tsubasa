@@ -3,7 +3,11 @@ const path = require('path');
 const axios = require('axios');
 const colors = require('colors');
 const readline = require('readline');
+const figlet = require('figlet');
 
+console.log(figlet.textSync('PUTICOOL').rainbow);
+console.log('[+] Welcome & Enjoy Sir !'.green);
+console.log('[+] Error? PM Telegram [https://t.me/NothingYub]'.red);
 class Tsubasa {
     constructor() {
         this.data = this.loadData();
