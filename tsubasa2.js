@@ -5,9 +5,16 @@ const colors = require('colors');
 const readline = require('readline');
 const { HttpsProxyAgent } = require('https-proxy-agent');
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
-const figlet = require('figlet');
 
-console.log(figlet.textSync('PUTICOOL').rainbow);
+console.clear();
+console.log(`
+██████╗ ██╗   ██╗████████╗██╗ ██████╗ ██████╗  ██████╗ ██╗      
+██╔══██╗██║   ██║╚══██╔══╝██║██╔════╝██╔═══██╗██╔═══██╗██║      
+██████╔╝██║   ██║   ██║   ██║██║     ██║   ██║██║   ██║██║      
+██╔═══╝ ██║   ██║   ██║   ██║██║     ██║   ██║██║   ██║██║      
+██║     ╚██████╔╝   ██║   ██║╚██████╗╚██████╔╝╚██████╔╝███████╗ 
+╚═╝      ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝ 
+        `.cyan);
 console.log('[+] Welcome & Enjoy Sir !'.green);
 console.log('[+] Error? PM Telegram [https://t.me/NothingYub]'.red);
 class Tsubasa {
