@@ -3,18 +3,8 @@ const path = require('path');
 const axios = require('axios');
 const colors = require('colors');
 const readline = require('readline');
+const printLogo = require("./src/logo");
 
-console.clear();
-console.log(`
-██████╗ ██╗   ██╗████████╗██╗ ██████╗ ██████╗  ██████╗ ██╗      
-██╔══██╗██║   ██║╚══██╔══╝██║██╔════╝██╔═══██╗██╔═══██╗██║      
-██████╔╝██║   ██║   ██║   ██║██║     ██║   ██║██║   ██║██║      
-██╔═══╝ ██║   ██║   ██║   ██║██║     ██║   ██║██║   ██║██║      
-██║     ╚██████╔╝   ██║   ██║╚██████╗╚██████╔╝╚██████╔╝███████╗ 
-╚═╝      ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝ 
-        `.cyan);
-console.log('[+] Welcome & Enjoy Sir !'.green);
-console.log('[+] Error? PM Telegram [https://t.me/NothingYub]'.red);
 class Tsubasa {
     constructor() {
         this.data = this.loadData();
@@ -23,7 +13,7 @@ class Tsubasa {
     }
 
     loadData() {
-        const dataFile = path.join(__dirname, 'data.txt');
+        const dataFile = path.join(__dirname, 'test.txt');
         return fs.readFileSync(dataFile, 'utf8')
             .replace(/\r/g, '')
             .split('\n')
@@ -468,6 +458,7 @@ class Tsubasa {
     }
 
     async main() {
+        printLogo();
         while (true) {
             for (let i = 0; i < this.data.length; i++) {
                 const initData = this.data[i];

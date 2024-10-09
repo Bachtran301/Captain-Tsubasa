@@ -5,18 +5,8 @@ const colors = require('colors');
 const readline = require('readline');
 const { HttpsProxyAgent } = require('https-proxy-agent');
 const { Worker, isMainThread, parentPort, workerData } = require('worker_threads');
+const printLogo = require("./src/logo");
 
-console.clear();
-console.log(`
-██████╗ ██╗   ██╗████████╗██╗ ██████╗ ██████╗  ██████╗ ██╗      
-██╔══██╗██║   ██║╚══██╔══╝██║██╔════╝██╔═══██╗██╔═══██╗██║      
-██████╔╝██║   ██║   ██║   ██║██║     ██║   ██║██║   ██║██║      
-██╔═══╝ ██║   ██║   ██║   ██║██║     ██║   ██║██║   ██║██║      
-██║     ╚██████╔╝   ██║   ██║╚██████╗╚██████╔╝╚██████╔╝███████╗ 
-╚═╝      ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝ 
-        `.cyan);
-console.log('[+] Welcome & Enjoy Sir !'.green);
-console.log('[+] Error? PM Telegram [https://t.me/NothingYub]'.red);
 class Tsubasa {
     constructor(accountIndex, initData, proxy) {
         this.accountIndex = accountIndex;
@@ -585,6 +575,7 @@ class TsubasaManager {
     }
 
     async main() {
+        printLogo();
         while (true) {
             for (let i = 0; i < this.data.length; i += this.maxThreads) {
                 const workerPromises = [];
