@@ -13,7 +13,7 @@ class Tsubasa {
     }
 
     loadData() {
-        const dataFile = path.join(__dirname, 'test.txt');
+        const dataFile = path.join(__dirname, 'data.txt');
         return fs.readFileSync(dataFile, 'utf8')
             .replace(/\r/g, '')
             .split('\n')
