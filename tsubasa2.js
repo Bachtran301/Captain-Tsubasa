@@ -18,7 +18,7 @@ class Tsubasa {
         this.headers = {
             "Accept": "application/json, text/plain, */*",
             "Accept-Encoding": "gzip, deflate, br",
-            "Accept-Language": "en-US,en;q=0.9",
+            "Accept-Language": "vi-VN,vi;q=0.9,fr-FR;q=0.8,fr;q=0.7,en-US;q=0.6,en;q=0.5",
             "Content-Type": "application/json",
             "Origin": "https://app.ton.tsubasa-rivals.com",
             "Referer": "https://app.ton.tsubasa-rivals.com/",
@@ -98,7 +98,7 @@ class Tsubasa {
     }
 
     async callStartAPI(initData, axiosInstance) {
-        const startUrl = "https://app.ton.tsubasa-rivals.com/api/start";
+        const startUrl = "https://api.app.ton.tsubasa-rivals.com/api/start";
         const startPayload = { lang_code: "en", initData: initData };
         
         try {
@@ -132,7 +132,7 @@ class Tsubasa {
     }
 
     async callDailyRewardAPI(initData, axiosInstance) {
-        const dailyRewardUrl = "https://app.ton.tsubasa-rivals.com/api/daily_reward/claim";
+        const dailyRewardUrl = "https://api.app.ton.tsubasa-rivals.com/api/daily_reward/claim";
         const dailyRewardPayload = { initData: initData };
         
         try {
@@ -151,7 +151,7 @@ class Tsubasa {
     }
 
     async executeTask(initData, taskId, axiosInstance) {
-        const executeUrl = "https://app.ton.tsubasa-rivals.com/api/task/execute";
+        const executeUrl = "https://api.app.ton.tsubasa-rivals.com/api/task/execute";
         const executePayload = { task_id: taskId, initData: initData };
         
         try {
@@ -164,7 +164,7 @@ class Tsubasa {
     }
 
     async checkTaskAchievement(initData, taskId, axiosInstance) {
-        const achievementUrl = "https://app.ton.tsubasa-rivals.com/api/task/achievement";
+        const achievementUrl = "https://api.app.ton.tsubasa-rivals.com/api/task/achievement";
         const achievementPayload = { task_id: taskId, initData: initData };
         
         try {
@@ -185,7 +185,7 @@ class Tsubasa {
     }
 
     async getCardInfo(initData, axiosInstance) {
-        const startUrl = "https://app.ton.tsubasa-rivals.com/api/start";
+        const startUrl = "https://api.app.ton.tsubasa-rivals.com/api/start";
         const startPayload = { lang_code: "en", initData: initData };
         
         try {
@@ -246,7 +246,7 @@ class Tsubasa {
                 }
     
                 if (card.unlocked && updatedTotalCoins >= card.cost && card.cost <= this.config.maxUpgradeCost) {
-                    const levelUpUrl = "https://app.ton.tsubasa-rivals.com/api/card/levelup";
+                    const levelUpUrl = "https://api.app.ton.tsubasa-rivals.com/api/card/levelup";
                     const levelUpPayload = {
                         category_id: card.categoryId,
                         card_id: card.cardId,
@@ -266,7 +266,6 @@ class Tsubasa {
                             this.log(`Cooldown not yet over for card ${card.name} (${card.cardId})`, 'warning');
                             cooldownCards.add(card.cardId);
                         } else {
-                            console.log(error);
                             this.log(`Error leveling up card ${card.name} (${card.cardId}): ${error.message}`, 'error');
                         }
                     }
@@ -278,7 +277,7 @@ class Tsubasa {
     }
 
     async callTapAPI(initData, tapCount, axiosInstance) {
-        const tapUrl = "https://app.ton.tsubasa-rivals.com/api/tap";
+        const tapUrl = "https://api.app.ton.tsubasa-rivals.com/api/tap";
         const tapPayload = { tapCount: tapCount, initData: initData };
         
         try {
@@ -295,7 +294,7 @@ class Tsubasa {
     }
 
     async callEnergyRecoveryAPI(initData, axiosInstance) {
-        const recoveryUrl = "https://app.ton.tsubasa-rivals.com/api/energy/recovery";
+        const recoveryUrl = "https://api.app.ton.tsubasa-rivals.com/api/energy/recovery";
         const recoveryPayload = { initData: initData };
         
         try {
@@ -360,7 +359,7 @@ class Tsubasa {
     }
 
     async callTapLevelUpAPI(initData, axiosInstance) {
-        const tapLevelUpUrl = "https://app.ton.tsubasa-rivals.com/api/tap/levelup";
+        const tapLevelUpUrl = "https://api.app.ton.tsubasa-rivals.com/api/tap/levelup";
         const payload = { initData: initData };
         
         try {
@@ -377,7 +376,7 @@ class Tsubasa {
     }
 
     async callEnergyLevelUpAPI(initData, axiosInstance) {
-        const energyLevelUpUrl = "https://app.ton.tsubasa-rivals.com/api/energy/levelup";
+        const energyLevelUpUrl = "https://api.app.ton.tsubasa-rivals.com/api/energy/levelup";
         const payload = { initData: initData };
         
         try {
