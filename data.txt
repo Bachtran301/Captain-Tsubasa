@@ -1,0 +1,1 @@
+query_id=AAF-V7Z1AgAAAH5XtnXjafBN&user=%7B%22id%22%3A6269851518%2C%22first_name%22%3A%22Nothing%22%2C%22last_name%22%3A%22Yub%22%2C%22username%22%3A%22NothingYub%22%2C%22language_code%22%3A%22en%22%2C%22allows_write_to_pm%22%3Atrue%7D&auth_date=1726754919&hash=f4b2f0666e7b4cc4524f6a830958a51aed84a25f2f763f0636bb9c1345aabbf6
