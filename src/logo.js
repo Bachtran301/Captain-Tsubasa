@@ -8,7 +8,6 @@ function printLogo(){
     ╚═╝      ╚═════╝    ╚═╝   ╚═╝ ╚═════╝ ╚═════╝  ╚═════╝ ╚══════╝ 
             `.cyan);
     console.log('[+] Welcome & Enjoy Sir !'.green);
-    console.log('[+] Error? PM Telegram [https://t.me/NothingYub]'.red);
-    console.log('[+] 📣 New Feature Update 📣  [https://t.me/puticoolbot]'.blue);
+    console.log('[+] 📣 Error? - Update - New 📣  [https://t.me/+mjpRu3KiQTI4YmRl]'.blue);
 }
 module.exports = printLogo;
