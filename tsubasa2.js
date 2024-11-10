@@ -223,6 +223,7 @@ class Tsubasa {
         let updatedTotalCoins = totalCoins;
         let leveledUp = false;
         let cooldownCards = new Set();
+        let errorCards = new Set();
     
         do {
             leveledUp = false;
@@ -236,12 +237,13 @@ class Tsubasa {
             const currentTime = Math.floor(Date.now() / 1000);
             
             for (const card of sortedCards) {
-                if (cooldownCards.has(card.cardId)) {
+                if (cooldownCards.has(card.cardId) || errorCards.has(card.cardId)) {
                     continue;
                 }
 
                 if (card.end_datetime && currentTime > card.end_datetime) {
                     this.log(`Card ${card.name} (${card.cardId}) has expired. Skipping upgrade.`, 'warning');
+                    errorCards.add(card.cardId);
                     continue;
                 }
     
@@ -262,12 +264,22 @@ class Tsubasa {
                             break;
                         }
                     } catch (error) {
-                        if (error.response && error.response.status === 400 && error.response.data && error.response.data.message === 'Wait for cooldown') {
-                            this.log(`Cooldown not yet over for card ${card.name} (${card.cardId})`, 'warning');
-                            cooldownCards.add(card.cardId);
+                        if (error.response && error.response.status === 400) {
+                            if (error.response.data && error.response.data.message === 'Wait for cooldown') {
+                                this.log(`Cooldown not yet over for card ${card.name} (${card.cardId})`, 'warning');
+                                cooldownCards.add(card.cardId);
+                            } else if (error.response.data && error.response.data.message === 'Expired') {
+                                this.log(`Error upgrading card ${card.name} (${card.cardId}): the card has expired`, 'warning');
+                                errorCards.add(card.cardId);
+                            } else {
+                                this.log(`Error upgrading card ${card.name} (${card.cardId}): ${error.response.data.message}`, 'error');
+                                errorCards.add(card.cardId);
+                            }
                         } else {
                             this.log(`Error leveling up card ${card.name} (${card.cardId}): ${error.message}`, 'error');
+                            errorCards.add(card.cardId);
                         }
+                        continue;
                     }
                 }
             }
