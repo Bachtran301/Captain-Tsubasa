@@ -9,5 +9,6 @@ function printLogo(){
             `.cyan);
     console.log('[+] Welcome & Enjoy Sir !'.green);
     console.log('[+] 📣 Error? - Update - New 📣  [https://t.me/+mjpRu3KiQTI4YmRl]'.blue);
+    console.log('[+] v0.1.6'.red);
 }
 module.exports = printLogo;
