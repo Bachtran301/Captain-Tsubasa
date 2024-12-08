@@ -37,26 +37,29 @@ class Tsubasa {
 
     async log(msg, type = 'info') {
         const timestamp = new Date().toLocaleTimeString();
-        const accountPrefix = `[Account ${this.accountIndex + 1}]`;
-        const ipPrefix = this.proxyIP ? `[${this.proxyIP}]` : '[Unknown IP]';
-        let logMessage = '';
-        
+        const accountPrefix = `Account ${this.accountIndex + 1}`;
+        const ipPrefix = this.proxyIP || 'Unknown IP';
+        const formattedType = type.toLocaleUpperCase();
+    
+        let logMessage = `${timestamp} | ${formattedType} | ${accountPrefix} | ${ipPrefix} | ${msg}`;
+    
         switch(type) {
             case 'success':
-                logMessage = `${accountPrefix}${ipPrefix} ${msg}`.green;
+                logMessage = logMessage.green;
                 break;
             case 'error':
-                logMessage = `${accountPrefix}${ipPrefix} ${msg}`.red;
+                logMessage = logMessage.red;
                 break;
             case 'warning':
-                logMessage = `${accountPrefix}${ipPrefix} ${msg}`.yellow;
+                logMessage = logMessage.yellow;
                 break;
             default:
-                logMessage = `${accountPrefix}${ipPrefix} ${msg}`.blue;
+                logMessage = logMessage.blue;
         }
-        
-        console.log(`[${timestamp}] ${logMessage}`);
+    
+        console.log(logMessage);
     }
+    
 
     loadConfig() {
         const configPath = path.join(__dirname, 'config.json');
@@ -261,7 +264,6 @@ class Tsubasa {
                             updatedTotalCoins -= card.cost;
                             leveledUp = true;
                             this.log(`Leveled up card ${card.name} (${card.cardId}) to level ${card.level + 1}. Cost: ${card.cost}, Balance remaining: ${updatedTotalCoins}`);
-                            break;
                         }
                     } catch (error) {
                         if (error.response && error.response.status === 400) {
@@ -492,6 +494,10 @@ class Tsubasa {
 
                 if (startResult.tasks && startResult.tasks.length > 0) {
                     for (const task of startResult.tasks) {
+                        if (task.id === 32 || task.id === 34) {
+                            this.log(`Skipping task with ID: ${task.id}`, 'warning');
+                            continue;
+                        }
                         const executeResult = await this.executeTask(this.initData, task.id, axiosInstance);
                         if (executeResult) {
                             const achievementResult = await this.checkTaskAchievement(this.initData, task.id, axiosInstance);

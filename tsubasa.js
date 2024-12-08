@@ -4,11 +4,13 @@ const axios = require('axios');
 const colors = require('colors');
 const readline = require('readline');
 const printLogo = require("./src/logo");
+const log = require('./src/logger');
 
 class Tsubasa {
     constructor() {
         this.data = this.loadData();
         this.headers = this.initHeaders();
+        this.log = log;
         this.config = this.loadConfig();
     }
 
@@ -39,26 +41,6 @@ class Tsubasa {
             "X-Player-Id": firstUserId.toString(),
             "X-Masterhash": "fcd309c672b6ede14f2416cca64caa8ceae4040470f67e83a6964aeb68594bbc"
         };
-    }
-
-    log(msg, type = 'info') {
-        const timestamp = new Date().toLocaleTimeString();
-        switch(type) {
-            case 'success':
-                console.log(`[${timestamp}] [*] ${msg}`.green);
-                break;
-            case 'custom':
-                console.log(`[${timestamp}] [*] ${msg}`.magenta);
-                break;        
-            case 'error':
-                console.log(`[${timestamp}] [!] ${msg}`.red);
-                break;
-            case 'warning':
-                console.log(`[${timestamp}] [*] ${msg}`.yellow);
-                break;
-            default:
-                console.log(`[${timestamp}] [*] ${msg}`.blue);
-        }
     }
 
     loadConfig() {
@@ -257,7 +239,6 @@ class Tsubasa {
                             updatedTotalCoins -= card.cost;
                             leveledUp = true;
                             this.log(`Leveled up card ${card.name} (${card.cardId}) to level ${card.level + 1}. Cost: ${card.cost}, Remaining balance: ${updatedTotalCoins}`);
-
                         }
                     } catch (error) {
                         if (error.response && error.response.status === 400) {
@@ -477,7 +458,7 @@ class Tsubasa {
                 const userId = JSON.parse(decodeURIComponent(initData.split('user=')[1].split('&')[0])).id;
                 const firstName = JSON.parse(decodeURIComponent(initData.split('user=')[1].split('&')[0])).first_name;
                 
-                this.log(`========== Account ${i + 1} | ${firstName} ==========`, 'custom');
+                console.log(`========== Account ${i + 1} | ${firstName.green} ==========`);
 
                 this.headers["X-Player-Id"] = userId.toString();
 
@@ -497,6 +478,10 @@ class Tsubasa {
 
                         if (startResult.tasks && startResult.tasks.length > 0) {
                             for (const task of startResult.tasks) {
+                                if (task.id === 32 || task.id === 34) {
+                                    this.log(`Skipping task with ID: ${task.id}`, 'warning');
+                                    continue;
+                                }        
                                 const executeResult = await this.executeTask(initData, task.id, axiosInstance);
                                 if (executeResult) {
                                     const achievementResult = await this.checkTaskAchievement(initData, task.id, axiosInstance);
